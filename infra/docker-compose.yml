@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  gateway:
+    build: ../services/gateway
+    env_file:
+      - ../.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - nlp
+      - scheduler
+      - sync
+  nlp:
+    build: ../services/nlp
+    env_file:
+      - ../.env
+  scheduler:
+    build: ../services/scheduler
+    env_file:
+      - ../.env
+  sync:
+    build: ../services/sync
+    env_file:
+      - ../.env
+
