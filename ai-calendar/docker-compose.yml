@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: packages/api-gateway/Dockerfile
+    env_file: .env
+    environment:
+      - PORT=8080
+      - NLP_SERVICE_URL=http://nlp-service:3001
+      - NEXTCLOUD_SYNC_URL=http://nextcloud-sync:3002
+      - TRAVEL_SERVICE_URL=http://travel-service:3003
+    ports:
+      - "8080:8080"
+    depends_on:
+      - nlp-service
+      - nextcloud-sync
+      - travel-service
+  nlp-service:
+    build:
+      context: .
+      dockerfile: packages/nlp-service/Dockerfile
+    env_file: .env
+    environment:
+      - PORT=3001
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+  nextcloud-sync:
+    build:
+      context: .
+      dockerfile: packages/nextcloud-sync/Dockerfile
+    env_file: .env
+    environment:
+      - PORT=3002
+      - NEXTCLOUD_URL=${NEXTCLOUD_URL}
+      - NEXTCLOUD_USERNAME=${NEXTCLOUD_USERNAME}
+      - NEXTCLOUD_PASSWORD=${NEXTCLOUD_PASSWORD}
+      - NEXTCLOUD_CALENDAR_PATH=${NEXTCLOUD_CALENDAR_PATH}
+  travel-service:
+    build:
+      context: .
+      dockerfile: packages/travel-service/Dockerfile
+    env_file: .env
+    environment:
+      - PORT=3003
+      - ORS_API_KEY=${ORS_API_KEY}
+

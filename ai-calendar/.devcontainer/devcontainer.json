@@ -1,0 +1,13 @@
+{
+  "name": "ai-calendar",
+  "workspaceFolder": "/workspace/ai-calendar",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
+
