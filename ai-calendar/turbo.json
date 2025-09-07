@@ -1,0 +1,14 @@
+{
+  "pipeline": {
+    "build": {
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "dev": {
+      "cache": false
+    },
+    "clean": {}
+  }
+}
+
